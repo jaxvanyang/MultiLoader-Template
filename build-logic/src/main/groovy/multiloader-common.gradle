@@ -7,6 +7,12 @@ base {
     archivesName = "${mod_id}-${project.name}-${minecraft_version}"
 }
 
+['apiElements', 'runtimeElements'].each { variant ->
+    configurations.named(variant) {
+        outgoing.capability("${project.group}:${project.name}:${project.version}")
+    }
+}
+
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
     withSourcesJar()
